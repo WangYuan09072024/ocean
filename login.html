@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - OceanFlow</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="logo">
+                <i class="fas fa-water"></i>
+                <h1>OceanFlow</h1>
+            </div>
+            <p class="tagline">Nơi dòng chảy cuộc sống của bạn được sắp xếp</p>
+            <button id="google-login" class="google-login-btn">
+                <i class="fab fa-google"></i>
+                Đăng nhập với Google
+            </button>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Quản lý mục tiêu & kế hoạch</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Theo dõi tâm trạng & học tập</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Lưu trữ sáng tạo cá nhân</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- THÊM FIREBASE SDK VÀ APP.JS TRƯỚC AUTH.JS -->
+<!-- TRONG login.html - CHỈ ĐỂ LẠI 2 SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<!-- XÓA DÒNG firebase-firestore-compat.js -->
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

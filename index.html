@@ -1,0 +1,2475 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OceanFlow</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn"><i class="fas fa-water"></i></button>
+    
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay"></div>
+    
+    <div class="app-container"> <!-- CHỈ CÓ 1 THẺ APP-CONTAINER DUY NHẤT -->
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <span><i class="fas fa-water"> </i>  OceanFlow</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#goals" class="nav-link"><i class="fas fa-bullseye"></i> Goals</a></li>
+                <li><a href="#planner" class="nav-link"><i class="fas fa-calendar-alt"></i> Planner</a></li>
+                <li><a href="#mood" class="nav-link"><i class="fas fa-smile"></i> Mood & Journal</a></li>
+                <li><a href="#creative" class="nav-link"><i class="fas fa-palette"></i> Creative Corner</a></li>
+                <li><a href="#study" class="nav-link"><i class="fas fa-graduation-cap"></i> Study Tracker</a></li>
+                <li><a href="#bucketlist" class="nav-link"><i class="fas fa-list-check"></i> Bucket List</a></li>
+            </ul>
+            <div class="user-section">
+                <div class="user-info">
+                    <img id="user-avatar" src="" alt="User Avatar">
+                    <span id="user-name"></span>
+                </div>
+                <button id="logout-btn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <h1>Home</h1>
+                <div class="home-container">
+                    <div class="calendar-section">
+                        <div class="calendar-header1">
+                            <h2>Lịch hôm nay</h2>
+                            <div id="current-date" class="current-date"></div>
+                        </div>
+                        <div id="calendar" class="calendar"></div>
+                    </div>
+<div class="important-tasks">
+    <h2>Việc quan trọng nhất hôm nay</h2>
+    <div class="add-task-section">
+        <input type="text" id="new-task-input" class="new-task-input" placeholder="Thêm việc quan trọng mới...">
+        <button id="add-task-btn" class="add-task-btn">
+            <i class="fas fa-plus"></i> Thêm
+        </button>
+    </div>
+    <div id="tasks-list" class="tasks-list">
+        <!-- Tasks will be dynamically added here -->
+    </div>
+</div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            <!-- Goals Section -->
+<!-- Goals Section -->
+<section id="goals" class="section">
+    <h1>Goals</h1>
+    <div class="goals-container">
+        <!-- Statistics - MỚI -->
+        <div class="goals-stats">
+            <div class="stat-card total">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-value" id="total-goals">0</div>
+                <div class="stat-label">Tổng mục tiêu</div>
+            </div>
+            <div class="stat-card completed">
+                <div class="stat-icon">✅</div>
+                <div class="stat-value" id="completed-goals">0</div>
+                <div class="stat-label">Đã hoàn thành</div>
+            </div>
+            <div class="stat-card in-progress">
+                <div class="stat-icon">⏳</div>
+                <div class="stat-value" id="inprogress-goals">0</div>
+                <div class="stat-label">Đang thực hiện</div>
+            </div>
+            <div class="stat-card overdue">
+                <div class="stat-icon">⚠️</div>
+                <div class="stat-value" id="overdue-goals">0</div>
+                <div class="stat-label">Quá hạn</div>
+            </div>
+        </div>
+
+        <!-- Filters - MỚI -->
+        <div class="goals-filters">
+            <div class="filter-group">
+                <label for="category-filter">Danh mục:</label>
+                <select id="category-filter" class="filter-select">
+                    <option value="all">Tất cả</option>
+                    <option value="personal">Cá nhân</option>
+                    <option value="work">Công việc</option>
+                    <option value="study">Học tập</option>
+                    <option value="health">Sức khỏe</option>
+                    <option value="finance">Tài chính</option>
+                    <option value="other">Khác</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="priority-filter">Ưu tiên:</label>
+                <select id="priority-filter" class="filter-select">
+                    <option value="all">Tất cả</option>
+                    <option value="high">Cao</option>
+                    <option value="medium">Trung bình</option>
+                    <option value="low">Thấp</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Trạng thái:</label>
+                <button class="filter-btn active" data-filter="all">Tất cả</button>
+                <button class="filter-btn" data-filter="active">Đang làm</button>
+                <button class="filter-btn" data-filter="completed">Hoàn thành</button>
+            </div>
+        </div>
+
+        <!-- Add Goal Button -->
+        <div class="add-goal">
+            <button id="add-goal-btn" class="add-goal-btn">
+                <i class="fas fa-plus-circle"></i> Thêm Mục Tiêu Mới
+            </button>
+        </div>
+
+        <!-- Goals List -->
+        <div id="goals-list" class="goals-list">
+            <!-- Goals will be dynamically added here -->
+        </div>
+    </div>
+</section>
+
+<!-- Goal Modal - CẬP NHẬT -->
+<div id="goal-modal" class="goal-modal">
+    <div class="goal-modal-content">
+        <div class="goal-modal-header">
+            <h3 id="goal-modal-title">Thêm Mục Tiêu Mới</h3>
+            <button class="close-modal" onclick="hideAddGoalModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="goal-modal-body">
+            <div class="modal-input-group">
+                <label for="goal-modal-text">Mục tiêu: <span style="color: red;">*</span></label>
+                <textarea id="goal-modal-text" class="modal-textarea" placeholder="Mô tả chi tiết mục tiêu của bạn..." rows="3"></textarea>
+            </div>
+            
+            <!-- Danh mục - MỚI -->
+            <div class="modal-input-group">
+                <label for="goal-modal-category">Danh mục:</label>
+                <select id="goal-modal-category" class="modal-select">
+                    <option value="personal">🙂 Cá nhân</option>
+                    <option value="work">💼 Công việc</option>
+                    <option value="study">📚 Học tập</option>
+                    <option value="health">💪 Sức khỏe</option>
+                    <option value="finance">💰 Tài chính</option>
+                    <option value="other">📌 Khác</option>
+                </select>
+            </div>
+            
+            <!-- Mức độ ưu tiên - MỚI -->
+            <div class="modal-input-group">
+                <label for="goal-modal-priority">Mức độ ưu tiên:</label>
+                <select id="goal-modal-priority" class="modal-select">
+                    <option value="high">🔴 Cao</option>
+                    <option value="medium" selected>🟠 Trung bình</option>
+                    <option value="low">🟢 Thấp</option>
+                </select>
+            </div>
+            
+            <div class="modal-input-group">
+                <label for="goal-modal-deadline">Deadline: <span style="color: red;">*</span></label>
+                <input type="date" id="goal-modal-deadline" class="modal-input">
+                <div id="deadline-preview" class="deadline-preview">Chọn ngày deadline</div>
+            </div>
+            
+            <!-- Tiến độ - MỚI -->
+            <div class="modal-input-group" id="progress-group" style="display: none;">
+                <label for="goal-modal-progress">Tiến độ hiện tại:</label>
+                <div class="progress-input-group">
+                    <input type="range" id="goal-modal-progress" class="progress-slider" min="0" max="100" value="0">
+                    <span class="progress-value"><span id="progress-value-display">0</span>%</span>
+                </div>
+            </div>
+        </div>
+        <div class="goal-modal-footer">
+            <button id="goal-modal-cancel" class="modal-btn modal-btn-cancel">
+                <i class="fas fa-times"></i> Hủy
+            </button>
+            <button id="goal-modal-save" class="modal-btn modal-btn-save">
+                <i class="fas fa-save"></i> Lưu Mục Tiêu
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Custom Confirm Modal - MỚI -->
+<div id="custom-confirm-modal" class="custom-confirm-modal">
+    <div class="confirm-content">
+        <div class="confirm-icon">
+            <i class="fas fa-question-circle"></i>
+        </div>
+        <div class="confirm-message" id="confirm-message"></div>
+        <div class="confirm-buttons">
+            <button class="confirm-btn confirm-btn-cancel" id="confirm-cancel">
+                <i class="fas fa-times"></i> Hủy
+            </button>
+            <button class="confirm-btn confirm-btn-confirm" id="confirm-ok">
+                <i class="fas fa-check"></i> Xác nhận
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Planner Section -->
+<!-- Enhanced Planner Section -->
+<!-- Planner Section -->
+<!-- Enhanced Planner Section -->
+<section id="planner" class="section">
+    <h1>📅 Planner Chi Tiết</h1>
+    
+    <div class="planner-container">
+        <!-- Day Navigation -->
+        <div class="planner-nav">
+            <button id="prev-day" class="nav-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="current-day-display">
+                <h2 id="day-display">Hôm nay</h2>
+                <div id="date-display" class="date-display"></div>
+            </div>
+            
+            <button id="next-day" class="nav-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <button id="toggle-calendar" class="calendar-toggle-btn">
+                <i class="fas fa-calendar-alt"></i> Xem lịch
+            </button>
+            
+            <button onclick="goToToday()" class="calendar-toggle-btn" style="background: var(--primary-color);">
+                <i class="fas fa-calendar-day"></i> Hôm nay
+            </button>
+        </div>
+        
+        <!-- Calendar View (Hidden by default) -->
+        <div id="calendar-view" class="calendar-view" style="display: none;">
+            <div class="calendar-month-nav">
+                <button id="prev-month" class="month-nav-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <h3 id="calendar-month-year"></h3>
+                <button id="next-month" class="month-nav-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div id="calendar-grid" class="mini-calendar-grid">
+                <!-- Calendar will be generated here -->
+            </div>
+        </div>
+        
+        <!-- Statistics Row -->
+        <div class="planner-stats-row">
+            <div class="stat-card-mini">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <div class="stat-value-mini" id="total-hours">0h</div>
+                    <div class="stat-label-mini">Tổng thời gian</div>
+                </div>
+            </div>
+            <div class="stat-card-mini">
+                <i class="fas fa-calendar-check"></i>
+                <div>
+                    <div class="stat-value-mini" id="total-events">0</div>
+                    <div class="stat-label-mini">Sự kiện</div>
+                </div>
+            </div>
+            <div class="stat-card-mini">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <div class="stat-value-mini" id="completed-events">0</div>
+                    <div class="stat-label-mini">Hoàn thành</div>
+                </div>
+            </div>
+            <div class="stat-card-mini">
+                <i class="fas fa-chart-line"></i>
+                <div>
+                    <div class="stat-value-mini" id="productivity">0%</div>
+                    <div class="stat-label-mini">Hiệu suất</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Thêm sự kiện FORM CHÍNH -->
+        <div class="quick-add-section">
+            <h3><i class="fas fa-plus-circle"></i> Thêm sự kiện</h3>
+            <div class="quick-add-form">
+                <input type="text" id="quick-title" class="quick-input" placeholder="Tiêu đề sự kiện...">
+                
+                <select id="quick-category" class="quick-input">
+                    <!-- Categories sẽ được điền bằng JS -->
+                </select>
+                
+                <input type="time" id="quick-start" class="quick-input" value="09:00">
+                <input type="time" id="quick-end" class="quick-input" value="10:00">
+                
+                <button id="quick-add-btn" class="quick-add-btn">
+                    <i class="fas fa-plus"></i> Thêm
+                </button>
+            </div>
+        </div>
+        
+        <!-- Thống kê chi tiết theo danh mục -->
+        <div class="quick-add-section" style="margin-bottom: 20px;">
+            <h3><i class="fas fa-chart-pie"></i> Phân tích thời gian theo danh mục</h3>
+            <div id="category-breakdown" style="padding: 10px;">
+                <!-- Category breakdown sẽ được render ở đây -->
+            </div>
+        </div>
+        
+        <!-- Timeline Container 24h -->
+        <div class="planner-timeline-wrapper">
+            <h4 style="margin: 0 0 15px 0; color: var(--dark-color);">
+                <i class="fas fa-timeline"></i> Timeline (00:00 - 24:00)
+                <span style="float: right; font-size: 0.8em; color: var(--text-light);">
+                    💡 Click vào sự kiện để chỉnh sửa
+                </span>
+            </h4>
+            <div class="timeline-container">
+                <div class="timeline-hours" id="timeline-hours">
+                    <!-- Hour labels 00-24 -->
+                </div>
+                <div class="timeline-events" id="timeline-events">
+                    <!-- Events sẽ được render ở đây -->
+                    <div id="timeline-grid"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Events List -->
+        <div class="events-list-section">
+            <div class="section-header">
+                <h3><i class="fas fa-list"></i> Danh sách sự kiện hôm nay</h3>
+            </div>
+            <div id="events-list" class="events-list">
+                <!-- Events list sẽ được render ở đây -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Event Modal (DUY NHẤT) -->
+<div id="event-modal" class="event-modal">
+    <div class="event-modal-content">
+        <div class="event-modal-header">
+            <h3 id="event-modal-title">Thêm Sự Kiện</h3>
+            <button class="close-modal-btn" onclick="closeEventModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="event-modal-body">
+            <div class="modal-input-group">
+                <label>Tiêu đề: <span style="color: red;">*</span></label>
+                <input type="text" id="event-title" class="modal-input" placeholder="Nhập tiêu đề...">
+            </div>
+            
+            <div class="modal-input-group">
+                <label>Ngày:</label>
+                <input type="date" id="event-date" class="modal-input">
+            </div>
+            
+            <div class="modal-row">
+                <div class="modal-input-group">
+                    <label>Thời gian bắt đầu:</label>
+                    <input type="time" id="event-start" class="modal-input">
+                </div>
+                
+                <div class="modal-input-group">
+                    <label>Thời gian kết thúc:</label>
+                    <input type="time" id="event-end" class="modal-input">
+                </div>
+            </div>
+            
+            <div class="modal-input-group">
+                <label>Danh mục:</label>
+                <select id="event-category" class="modal-select">
+                    <!-- Categories sẽ được điền bằng JS -->
+                </select>
+            </div>
+            
+            <div class="modal-input-group">
+                <label>Ghi chú:</label>
+                <textarea id="event-notes" class="modal-textarea" placeholder="Thêm ghi chú..."></textarea>
+            </div>
+            
+            <div class="modal-input-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="event-completed">
+                    <span>Đã hoàn thành</span>
+                </label>
+            </div>
+        </div>
+        <div class="event-modal-footer">
+            <button id="event-cancel-btn" class="modal-btn modal-btn-cancel">Hủy</button>
+            <button id="event-save-btn" class="modal-btn modal-btn-save">Lưu</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Tạm thời để tránh lỗi
+function closeEventModal() {
+    document.getElementById('event-modal').classList.remove('active');
+}
+
+function goToToday() {
+    console.log('Go to today - sẽ được implement trong planner.js');
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Mood & Journal Section -->
+<!-- Mood & Journal Section - SIMPLIFIED VERSION -->
+<!-- Mood & Journal Section - ENHANCED VERSION -->
+<!-- Mood & Journal Section - COMPLETELY INTEGRATED VERSION --><!-- Mood & Journal Section - COMPLETELY INTEGRATED VERSION -->
+<section id="mood" class="section">
+  <div class="mood-container">
+    <!-- Main Header -->
+    <div class="section-header">
+      <h1>📊 Theo Dõi & Phân Tích Cảm Xúc</h1>
+      <p class="subtitle">Hiểu rõ cảm xúc của bạn qua dữ liệu và phân tích chi tiết</p>
+    </div>
+    
+    <!-- Advanced Time Period Selector - ĐÃ DI CHUYỂN XUỐNG DƯỚI -->
+    <div class="period-selector-container">
+      <div class="period-selector">
+        <div class="period-group">
+          <label for="analysis-period">
+            <i class="fas fa-calendar-alt"></i> Chọn khoảng thời gian phân tích:
+          </label>
+          <div class="period-selector-buttons">
+            <button class="period-btn active" data-period="today">
+              <i class="fas fa-calendar-day"></i> Hôm nay
+            </button>
+            <button class="period-btn" data-period="week">
+              <i class="fas fa-calendar-week"></i> Tuần này
+            </button>
+            <button class="period-btn" data-period="month">
+              <i class="fas fa-calendar-alt"></i> Tháng này
+            </button>
+            <button class="period-btn" data-period="3months">
+              <i class="fas fa-calendar"></i> 3 tháng
+            </button>
+            <button class="period-btn" data-period="custom">
+              <i class="fas fa-calendar-day"></i> Tùy chỉnh
+            </button>
+          </div>
+        </div>
+        
+        <!-- Custom Date Range Picker -->
+        <div class="custom-range-picker" id="custom-range-picker" style="display: none;">
+          <div class="date-inputs">
+            <div class="date-input">
+              <label for="start-date">Từ ngày:</label>
+              <input type="date" id="start-date" class="date-picker">
+            </div>
+            <div class="date-input">
+              <label for="end-date">Đến ngày:</label>
+              <input type="date" id="end-date" class="date-picker" value="">
+            </div>
+            <button id="apply-custom-range" class="btn-primary btn-small">
+              <i class="fas fa-check"></i> Áp dụng
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Quick Stats Bar -->
+    <div class="quick-stats-bar">
+      <div class="quick-stat">
+        <i class="fas fa-chart-line"></i>
+        <span class="stat-label">Tổng ghi chép:</span>
+        <span class="stat-value" id="total-entries-count">0</span>
+      </div>
+      <div class="quick-stat">
+        <i class="fas fa-smile"></i>
+        <span class="stat-label">Tích cực:</span>
+        <span class="stat-value" id="positive-percentage">0%</span>
+      </div>
+      <div class="quick-stat">
+        <i class="fas fa-fire"></i>
+        <span class="stat-label">Cường độ TB:</span>
+        <span class="stat-value" id="avg-intensity">0/5</span>
+      </div>
+      <div class="quick-stat">
+        <i class="fas fa-calendar-check"></i>
+        <span class="stat-label">Ngày có dữ liệu:</span>
+        <span class="stat-value" id="days-with-data">0</span>
+      </div>
+    </div>
+    
+    <!-- Dashboard Cards -->
+    <div class="mood-dashboard">
+      <!-- Today's Mood Card -->
+      <div class="dashboard-card today-mood-card">
+        <div class="card-header">
+          <h3><i class="fas fa-sun"></i> Tâm Trạng Hôm Nay</h3>
+          <button class="btn-icon refresh-btn" id="refresh-today" title="Làm mới">
+            <i class="fas fa-redo"></i>
+          </button>
+        </div>
+        <div class="dashboard-content">
+          <div class="mood-display-large">
+            <div class="mood-emoji-large" id="today-mood-emoji">😐</div>
+            <div class="mood-info">
+              <div class="mood-name" id="today-mood-name">Chưa có dữ liệu</div>
+              <div class="mood-intensity" id="today-mood-intensity">Cường độ: --/5</div>
+            </div>
+          </div>
+          <div class="mood-stats-grid">
+            <div class="mood-stat">
+              <i class="fas fa-chart-bar"></i>
+              <span>Số lần ghi:</span>
+              <span class="value" id="today-entries-count">0</span>
+            </div>
+            <div class="mood-stat">
+              <i class="fas fa-clock"></i>
+              <span>Lần cuối:</span>
+              <span class="value" id="today-last-entry">--:--</span>
+            </div>
+            <div class="mood-stat">
+              <i class="fas fa-trend-up"></i>
+              <span>So hôm qua:</span>
+              <span class="value" id="today-vs-yesterday">--</span>
+            </div>
+            <div class="mood-stat">
+              <i class="fas fa-brain"></i>
+              <span>Rõ ràng:</span>
+              <span class="value" id="today-clarity">--</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn-secondary btn-small" id="add-today-mood">
+            <i class="fas fa-plus"></i> Thêm cảm xúc hôm nay
+          </button>
+        </div>
+      </div>
+      
+      <!-- Weekly Summary Card -->
+      <div class="dashboard-card weekly-card">
+        <div class="card-header">
+          <h3><i class="fas fa-calendar-week"></i> Tuần Này</h3>
+        </div>
+        <div class="dashboard-content">
+          <div class="week-chart-mini" id="week-chart-mini">
+            <!-- Mini week chart sẽ được vẽ -->
+          </div>
+          <div class="week-stats">
+            <div class="week-stat">
+              <span class="label">Trung bình:</span>
+              <span class="value" id="week-average">--/5</span>
+            </div>
+            <div class="week-stat">
+              <span class="label">Tích cực nhất:</span>
+              <span class="value" id="week-best-day">--</span>
+            </div>
+            <div class="week-stat">
+              <span class="label">Xu hướng:</span>
+              <span class="value" id="week-trend">--</span>
+            </div>
+            <div class="week-stat">
+              <span class="label">Nhất quán:</span>
+              <span class="value" id="week-consistency">--</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <small>Tuần <span id="current-week">--</span></small>
+        </div>
+      </div>
+      
+      <!-- Monthly Overview Card -->
+      <div class="dashboard-card monthly-card">
+        <div class="card-header">
+          <h3><i class="fas fa-calendar-alt"></i> Tháng Này</h3>
+        </div>
+        <div class="dashboard-content">
+          <div class="month-calendar-mini" id="month-calendar-mini">
+            <!-- Mini calendar sẽ được vẽ -->
+          </div>
+          <div class="month-stats">
+            <div class="month-stat">
+              <span class="label">Tổng ghi chép:</span>
+              <span class="value" id="month-entries-count">0</span>
+            </div>
+            <div class="month-stat">
+              <span class="label">Cảm xúc chính:</span>
+              <span class="value" id="month-dominant-emotion">--</span>
+            </div>
+            <div class="month-stat">
+              <span class="label">Ngày tốt nhất:</span>
+              <span class="value" id="month-best-day">--</span>
+            </div>
+            <div class="month-stat">
+              <span class="label">Phát triển:</span>
+              <span class="value" id="month-growth">--</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <small>Tháng <span id="current-month-name">--</span></small>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Combined Timeline Section -->
+    <div class="timeline-section">
+      <div class="section-header">
+        <h2><i class="fas fa-stream"></i> Dòng Thời Gian Cảm Xúc</h2>
+        <div class="timeline-controls enhanced-controls">
+          <div class="filter-group">
+            <select id="timeline-filter" class="form-control styled-select">
+              <option value="all">🕒 Tất cả thời gian</option>
+              <option value="today">📅 Hôm nay</option>
+              <option value="week">📅 Tuần này</option>
+              <option value="month">📅 Tháng này</option>
+              <option value="year">📅 Năm nay</option>
+              <option value="custom">🎯 Tùy chỉnh</option>
+            </select>
+            <button id="clear-filters" class="btn-control" title="Xóa bộ lọc">
+              <i class="fas fa-filter-circle-xmark"></i> Xóa lọc
+            </button>
+          </div>
+          <div class="action-buttons">
+            <button id="new-entry-btn" class="btn-primary with-icon">
+              <i class="fas fa-pen-fancy"></i> Ghi nhận mới
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div id="mood-timeline" class="mood-timeline">
+        <div class="empty-state">
+          <div class="emoji">📝</div>
+          <h3>Chưa có dữ liệu</h3>
+          <p>Hãy bắt đầu ghi nhận cảm xúc đầu tiên của bạn!</p>
+          <button id="start-tracking" class="btn-secondary">
+            <i class="fas fa-play"></i> Bắt đầu theo dõi
+          </button>
+        </div>
+      </div>
+      
+      <div class="load-more-container">
+        <button id="load-more-timeline" class="btn-secondary load-more-btn">
+          <i class="fas fa-arrow-down"></i> Xem thêm (hiển thị <span id="current-count">0</span>/<span id="total-count">0</span>)
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mood Calendar Section -->
+    <div class="mood-calendar-section">
+      <div class="section-header">
+        <h2><i class="fas fa-calendar-days"></i> Lịch Cảm Xúc</h2>
+        <div class="calendar-controls">
+          <button id="prev-month" class="btn-control">
+            <i class="fas fa-chevron-left"></i> Tháng trước
+          </button>
+          <h3 id="current-month-display">Tháng này</h3>
+          <button id="next-month" class="btn-control">
+            Tháng sau <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="calendar-container">
+        <div class="calendar-header">
+          <div class="weekday">CN</div>
+          <div class="weekday">T2</div>
+          <div class="weekday">T3</div>
+          <div class="weekday">T4</div>
+          <div class="weekday">T5</div>
+          <div class="weekday">T6</div>
+          <div class="weekday">T7</div>
+        </div>
+        <div id="mood-calendar-grid" class="mood-calendar">
+          <!-- Calendar sẽ được tạo bằng JavaScript -->
+        </div>
+      </div>
+      
+      <div class="calendar-legend">
+        <div class="legend-item">
+          <span class="legend-color very-positive"></span>
+          <span>Rất tích cực</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color positive"></span>
+          <span>Tích cực</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color neutral"></span>
+          <span>Trung tính</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color negative"></span>
+          <span>Tiêu cực</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color very-negative"></span>
+          <span>Rất tiêu cực</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color no-data"></span>
+          <span>Không có dữ liệu</span>
+        </div>
+      </div>
+      
+      <div class="calendar-stats">
+        <div class="calendar-stat">
+          <i class="fas fa-calendar-check"></i>
+          <span>Ngày có dữ liệu:</span>
+          <span class="value" id="calendar-days-with-data">0</span>
+        </div>
+        <div class="calendar-stat">
+          <i class="fas fa-trophy"></i>
+          <span>Tháng tốt nhất:</span>
+          <span class="value" id="calendar-best-month">--</span>
+        </div>
+        <div class="calendar-stat">
+          <i class="fas fa-chart-line"></i>
+          <span>Xu hướng:</span>
+          <span class="value" id="calendar-trend">--</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Enhanced Analysis Section -->
+    <div class="emotion-analysis-section enhanced-analysis">
+      <div class="section-header">
+        <h2><i class="fas fa-chart-network"></i> Phân Tích Cảm Xúc Nâng Cao</h2>
+        <p class="subtitle">Phân tích chi tiết và đề xuất cá nhân hóa</p>
+      </div>
+      
+      <!-- Current Mood & Patterns -->
+      <div class="realtime-analysis enhanced-realtime">
+        <!-- Current Mood Analysis -->
+        <div class="realtime-card enhanced-card">
+          <div class="card-header">
+            <h3><i class="fas fa-heartbeat"></i> Tâm Trạng Hiện Tại & Xu Hướng</h3>
+            <button class="btn-icon refresh-btn" id="refresh-analysis" title="Làm mới phân tích">
+              <i class="fas fa-redo"></i>
+            </button>
+          </div>
+          <div class="current-mood-analysis">
+            <div class="mood-timeline-chart-large" id="mood-timeline-chart-large">
+              <!-- Biểu đồ timeline sẽ được vẽ -->
+            </div>
+            <div class="current-mood-details">
+              <div class="mood-detail">
+                <span class="label">Trạng thái hiện tại:</span>
+                <span class="value" id="current-state">--</span>
+              </div>
+              <div class="mood-detail">
+                <span class="label">Cường độ trung bình:</span>
+                <span class="value" id="current-avg-intensity">--/5</span>
+              </div>
+              <div class="mood-detail">
+                <span class="label">Biến động:</span>
+                <span class="value" id="current-volatility">--</span>
+              </div>
+              <div class="mood-detail">
+                <span class="label">Độ ổn định:</span>
+                <span class="value" id="current-stability">--/10</span>
+              </div>
+              <div class="mood-detail">
+                <span class="label">Tần suất ghi:</span>
+                <span class="value" id="current-frequency">--/ngày</span>
+              </div>
+              <div class="mood-detail">
+                <span class="label">Thời gian tốt nhất:</span>
+                <span class="value" id="current-best-time">--</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Emotion Frequency & Distribution -->
+        <div class="realtime-card enhanced-card">
+          <div class="card-header">
+            <h3><i class="fas fa-wave-square"></i> Phân Bố & Tần Suất Cảm Xúc</h3>
+          </div>
+          <div class="emotion-distribution">
+            <div class="distribution-charts">
+              <div class="donut-chart-container">
+                <div class="donut-chart" id="emotion-donut-chart">
+                  <!-- Donut chart sẽ được vẽ -->
+                </div>
+                <div class="chart-legend">
+                  <div class="legend-item">
+                    <span class="legend-dot very-positive"></span>
+                    <span>Rất tích cực</span>
+                    <span id="very-positive-percent">0%</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot positive"></span>
+                    <span>Tích cực</span>
+                    <span id="positive-percent">0%</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot neutral"></span>
+                    <span>Trung tính</span>
+                    <span id="neutral-percent">0%</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot negative"></span>
+                    <span>Tiêu cực</span>
+                    <span id="negative-percent">0%</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot very-negative"></span>
+                    <span>Rất tiêu cực</span>
+                    <span id="very-negative-percent">0%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="frequency-chart-container">
+                <div class="frequency-chart" id="emotion-frequency-chart">
+                  <!-- Frequency chart sẽ được vẽ -->
+                </div>
+                <div class="frequency-stats">
+                  <div class="frequency-stat">
+                    <span class="label">Cảm xúc phổ biến:</span>
+                    <span class="value" id="most-common-emotion">--</span>
+                  </div>
+                  <div class="frequency-stat">
+                    <span class="label">Ít phổ biến:</span>
+                    <span class="value" id="least-common-emotion">--</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Detailed Emotion Patterns -->
+      <div class="patterns-section">
+        <div class="section-header">
+          <h3><i class="fas fa-brain"></i> Mẫu Hình & Xu Hướng Chi Tiết</h3>
+        </div>
+        
+        <div class="patterns-grid">
+          <!-- Pattern 1: Weekly Pattern -->
+          <div class="pattern-card detailed-pattern">
+            <div class="pattern-header">
+              <i class="fas fa-clock"></i>
+              <h4>Nhịp Điệu Trong Tuần</h4>
+            </div>
+            <div class="pattern-content">
+              <div class="weekly-pattern-chart" id="weekly-pattern-chart">
+                <!-- Weekly pattern chart -->
+              </div>
+              <div class="pattern-insights">
+                <div class="insight-item">
+                  <i class="fas fa-trophy"></i>
+                  <span>Ngày tốt nhất: <strong id="best-weekday">--</strong></span>
+                </div>
+                <div class="insight-item">
+                  <i class="fas fa-heart-crack"></i>
+                  <span>Ngày khó khăn: <strong id="worst-weekday">--</strong></span>
+                </div>
+                <div class="insight-item">
+                  <i class="fas fa-chart-line"></i>
+                  <span>Xu hướng tuần: <strong id="weekly-pattern-trend">--</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Pattern 2: Time Pattern -->
+          <div class="pattern-card detailed-pattern">
+            <div class="pattern-header">
+              <i class="fas fa-hourglass-half"></i>
+              <h4>Xu Hướng Theo Giờ</h4>
+            </div>
+            <div class="pattern-content">
+              <div class="hourly-pattern-chart" id="hourly-pattern-chart">
+                <!-- Hourly pattern chart -->
+              </div>
+              <div class="pattern-insights">
+                <div class="insight-item">
+                  <i class="fas fa-sun"></i>
+                  <span>Giờ tích cực nhất: <strong id="best-hour">--</strong></span>
+                </div>
+                <div class="insight-item">
+                  <i class="fas fa-moon"></i>
+                  <span>Giờ khó khăn: <strong id="worst-hour">--</strong></span>
+                </div>
+                <div class="insight-item">
+                  <i class="fas fa-bell"></i>
+                  <span>Thời điểm ghi nhiều: <strong id="peak-hour">--</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Pattern 3: Emotion Transitions -->
+          <div class="pattern-card detailed-pattern">
+            <div class="pattern-header">
+              <i class="fas fa-exchange-alt"></i>
+              <h4>Chuyển Tiếp Cảm Xúc</h4>
+            </div>
+            <div class="pattern-content">
+              <div class="transition-matrix" id="transition-matrix">
+                <!-- Transition matrix -->
+              </div>
+              <div class="pattern-insights">
+                <div class="insight-item">
+                  <i class="fas fa-arrow-right"></i>
+                  <span>Chuyển tiếp phổ biến: <strong id="common-transition">--</strong></span>
+                </div>
+                <div class="insight-item">
+                  <i class="fas fa-bolt"></i>
+                  <span>Tốc độ hồi phục: <strong id="recovery-speed">--</strong></span>
+                </div>
+                <div class="insight-item">
+                  <i class="fas fa-shield-alt"></i>
+                  <span>Khả năng ổn định: <strong id="stability-index">--</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Advanced Insights & Recommendations -->
+      <div class="detailed-insights enhanced-insights">
+        <div class="section-header">
+          <h3><i class="fas fa-lightbulb"></i> Phân Tích Sâu & Đề Xuất Cá Nhân Hóa</h3>
+        </div>
+        
+        <div class="insight-grid" id="detailed-insights">
+          <!-- Advanced Trend Analysis -->
+          <div class="insight-card enhanced-insight">
+            <div class="insight-header">
+              <i class="fas fa-chart-line"></i>
+              <h4>📈 Phân Tích Xu Hướng Chi Tiết</h4>
+            </div>
+            <div class="insight-content">
+              <div class="advanced-trend-analysis">
+                <div class="trend-metric">
+                  <span class="metric-name">Xu hướng chính (30 ngày)</span>
+                  <span class="metric-value" id="trend-main">--</span>
+                </div>
+                <div class="trend-metric">
+                  <span class="metric-name">Tăng trưởng tích cực</span>
+                  <span class="metric-value" id="trend-growth">--%</span>
+                </div>
+                <div class="trend-metric">
+                  <span class="metric-name">Độ biến động</span>
+                  <span class="metric-value" id="trend-volatility">--</span>
+                </div>
+                <div class="trend-metric">
+                  <span class="metric-name">Điểm chuyển tiếp</span>
+                  <span class="metric-value" id="trend-transitions">0</span>
+                </div>
+                <div class="trend-metric">
+                  <span class="metric-name">Chu kỳ cảm xúc</span>
+                  <span class="metric-value" id="trend-cycle">-- ngày</span>
+                </div>
+                <div class="trend-metric">
+                  <span class="metric-name">Độ dài giai đoạn</span>
+                  <span class="metric-value" id="trend-phase-length">-- ngày</span>
+                </div>
+              </div>
+              <div class="insight-text">
+                <p id="trend-analysis-text">Đang phân tích xu hướng cảm xúc của bạn...</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Personalized Recommendations -->
+          <div class="insight-card enhanced-insight">
+            <div class="insight-header">
+              <i class="fas fa-lightbulb-on"></i>
+              <h4>💡 Đề Xuất Cá Nhân Hóa Chi Tiết</h4>
+            </div>
+            <div class="insight-content">
+              <div class="recommendation-list" id="personalized-recommendations">
+                <div class="recommendation-loading">
+                  <i class="fas fa-spinner fa-spin"></i>
+                  <span>Đang tạo đề xuất phù hợp với bạn...</span>
+                </div>
+              </div>
+              <div class="recommendation-stats">
+                <div class="recommendation-stat">
+                  <i class="fas fa-bullseye"></i>
+                  <span>Mức độ phù hợp: <strong id="recommendation-match">--%</strong></span>
+                </div>
+                <div class="recommendation-stat">
+                  <i class="fas fa-list-check"></i>
+                  <span>Tổng đề xuất: <strong id="recommendation-count">0</strong></span>
+                </div>
+                <div class="recommendation-stat">
+                  <i class="fas fa-star"></i>
+                  <span>Độ ưu tiên cao: <strong id="high-priority-count">0</strong></span>
+                </div>
+                <div class="recommendation-stat">
+                  <i class="fas fa-calendar-check"></i>
+                  <span>Thực hiện trong: <strong id="recommendation-timeline">7 ngày</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Advanced Statistics -->
+          <div class="insight-card enhanced-insight">
+            <div class="insight-header">
+              <i class="fas fa-chart-bar"></i>
+              <h4>📊 Thống Kê Nâng Cao & Dự Báo</h4>
+            </div>
+            <div class="insight-content">
+              <div class="advanced-statistics">
+                <div class="stat-row">
+                  <span class="stat-name">Tổng ghi chép</span>
+                  <span class="stat-value" id="stat-total-entries">0</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-name">Ngày tích cực</span>
+                  <span class="stat-value" id="stat-positive-days">0</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-name">Tỷ lệ hồi phục</span>
+                  <span class="stat-value" id="stat-recovery-rate">--%</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-name">Sự nhất quán</span>
+                  <span class="stat-value" id="stat-consistency">--/10</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-name">Độ ổn định dài hạn</span>
+                  <span class="stat-value" id="stat-long-term-stability">--</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-name">Dự báo tuần tới</span>
+                  <span class="stat-value" id="stat-forecast">--</span>
+                </div>
+              </div>
+              <div class="statistics-insight">
+                <div class="stat-insight">
+                  <i class="fas fa-tachometer-alt"></i>
+                  <span>Chỉ số sức khỏe tinh thần: <strong id="mental-health-index">--/100</strong></span>
+                </div>
+                <div class="stat-insight">
+                  <i class="fas fa-seedling"></i>
+                  <span>Tiến độ cải thiện: <strong id="improvement-progress">--%</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Combined Mood & Journal Modal -->
+<div id="mood-journal-modal" class="modal centered-modal">
+  <div class="modal-content large-modal">
+    <div class="modal-header">
+      <h2><i class="fas fa-heart-circle-plus"></i> Ghi Nhận Cảm Xúc & Nhật Ký</h2>
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="combined-form">
+        <!-- Step 1: Emotion Selection -->
+        <div class="form-step active" id="step-emotion">
+          <div class="step-header">
+            <div class="step-number">1</div>
+            <div class="step-title">
+              <h3><i class="fas fa-heart"></i> Cảm Xúc Của Bạn</h3>
+              <p>Chọn cảm xúc chính và cường độ</p>
+            </div>
+          </div>
+          
+          <div class="emotion-selection-main">
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+              <button class="category-tab active" data-category="all">
+                <i class="fas fa-layer-group"></i> Tất cả
+              </button>
+              <button class="category-tab" data-category="positive">
+                <i class="fas fa-smile"></i> Tích cực
+              </button>
+              <button class="category-tab" data-category="negative">
+                <i class="fas fa-frown"></i> Tiêu cực
+              </button>
+              <button class="category-tab" data-category="neutral">
+                <i class="fas fa-meh"></i> Trung tính
+              </button>
+            </div>
+            
+            <!-- Emotion Grid -->
+            <div class="emotion-grid" id="primary-emotions">
+              <!-- Emotions sẽ được tải động -->
+            </div>
+            
+            <!-- Selected Emotion Preview -->
+            <div class="selected-emotion-preview" id="selected-emotion-preview" style="display: none;">
+              <div class="preview-content">
+                <div class="preview-emoji" id="preview-emoji">😊</div>
+                <div class="preview-info">
+                  <div class="preview-name" id="preview-name">Vui vẻ</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Intensity Selection -->
+          <div class="intensity-section">
+            <h4><i class="fas fa-sliders-h"></i> Cường Độ Cảm Xúc</h4>
+            <div class="intensity-selector-enhanced">
+              <div class="intensity-labels">
+                <span>Rất nhẹ</span>
+                <span>Trung bình</span>
+                <span>Rất mạnh</span>
+              </div>
+              <input type="range" id="mood-intensity" min="1" max="10" value="5" class="intensity-slider">
+              <div class="intensity-value-display">
+                <span>Cường độ: </span>
+                <span class="value" id="intensity-value">5</span>
+                <span>/10</span>
+              </div>
+              <div class="intensity-visual">
+                <div class="intensity-bar">
+                  <div class="intensity-fill" id="intensity-fill"></div>
+                </div>
+                <div class="intensity-markers">
+                  <span class="marker" data-value="1">1</span>
+                  <span class="marker" data-value="3">3</span>
+                  <span class="marker" data-value="5">5</span>
+                  <span class="marker" data-value="7">7</span>
+                  <span class="marker" data-value="10">10</span>
+                </div>
+              </div>
+              <div class="intensity-description" id="intensity-description">
+                Mức độ trung bình - Cảm nhận rõ ràng nhưng không quá mãnh liệt
+              </div>
+            </div>
+          </div>
+          
+          <div class="step-actions">
+            <button class="btn-secondary" id="cancel-form">Hủy</button>
+            <button class="btn-primary" id="next-to-journal">Tiếp theo <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+        
+        <!-- Step 2: Journal Writing -->
+        <div class="form-step" id="step-journal">
+          <div class="step-header">
+            <div class="step-number">2</div>
+            <div class="step-title">
+              <h3><i class="fas fa-book-medical"></i> Viết Nhật Ký</h3>
+              <p>Chia sẻ suy nghĩ và trải nghiệm của bạn</p>
+            </div>
+          </div>
+          
+          <!-- Emotion Summary -->
+          <div class="emotion-summary" id="emotion-summary">
+            <div class="summary-content">
+              <div class="summary-emoji" id="summary-emoji">😊</div>
+              <div class="summary-info">
+                <div class="summary-text">
+                  <strong id="summary-name">Vui vẻ</strong>
+                  <span class="intensity-badge" id="summary-intensity">Cường độ: 5/10</span>
+                </div>
+                <button class="btn-small btn-secondary" id="change-emotion">
+                  <i class="fas fa-edit"></i> Thay đổi
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Journal Form -->
+          <div class="journal-form-content">
+            <div class="form-group">
+              <label for="journal-title">
+                <i class="fas fa-heading"></i> Tiêu đề (tùy chọn)
+              </label>
+              <input 
+                type="text" 
+                id="journal-title" 
+                placeholder="Ví dụ: Một ngày tuyệt vời với bạn bè"
+                maxlength="100"
+              >
+              <div class="char-counter">
+                <span id="title-count">0</span>/100 ký tự
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="journal-content">
+                <i class="fas fa-edit"></i> Nội dung nhật ký
+                <span class="optional">(bắt buộc)</span>
+              </label>
+              <textarea 
+                id="journal-content" 
+                placeholder="Hôm nay của bạn thế nào? Điều gì khiến bạn cảm thấy như vậy? Bạn đã trải qua những gì?..."
+                rows="6"
+              ></textarea>
+              <div class="word-counter">
+                <span id="content-count">0</span> từ
+                <span class="hint">(tối thiểu 10 từ để phân tích tốt hơn)</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="step-actions">
+            <button class="btn-secondary" id="back-to-emotion">
+              <i class="fas fa-arrow-left"></i> Quay lại
+            </button>
+            <button class="btn-primary" id="save-complete-entry">
+              <i class="fas fa-save"></i> Lưu ghi chép
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Notification Container -->
+<div id="toast-container"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Creative Corner Section -->
+<section id="creative" class="section">
+    
+    <input type="file" id="mediaInput" accept="image/*,video/*" multiple style="display: none;">
+
+    <div class="creative-container">
+        <!-- Enhanced Header -->
+        <div class="creative-header">
+            <h1>✨ Creative Corner</h1>
+            <p class="creative-subtitle">Nơi tâm hồn bạn được tự do sáng tạo và lưu giữ những khoảnh khắc đáng nhớ</p>
+        </div>
+
+        <!-- Enhanced Upload Section -->
+        <div class="upload-section">
+            <div class="upload-card">
+                <h3><i class="fas fa-magic"></i> TÔI MUỐN LƯU LẠI...</h3>
+                
+                <div class="upload-options">
+                    <label class="upload-option">
+                        <input type="radio" name="upload-type" value="moment" checked>
+                        <div class="option-content">
+                            <i class="fas fa-camera"></i>
+                            <span>Một khoảnh khắc đẹp hôm nay 📸</span>
+                        </div>
+                    </label>
+                    <label class="upload-option">
+                        <input type="radio" name="upload-type" value="idea">
+                        <div class="option-content">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Ý tưởng bất chợt 💡</span>
+                        </div>
+                    </label>
+                    <label class="upload-option">
+                        <input type="radio" name="upload-type" value="feeling">
+                        <div class="option-content">
+                            <i class="fas fa-heart"></i>
+                            <span>Cảm xúc đặc biệt ❤️</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Enhanced Upload Area -->
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-placeholder">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Kéo thả ảnh/video vào đây hoặc click để chọn</p>
+                        <p class="upload-hint">Hỗ trợ JPEG, PNG, GIF, MP4, MOV (tối đa 200MB/file, tối đa 10 file)</p>
+                    </div>
+                </div>
+
+                <!-- Enhanced Description -->
+                <div class="why-section">
+                    <h4><i class="fas fa-comment-alt"></i> Hãy kể câu chuyện của bạn...</h4>
+                    <textarea 
+                        id="creativeDescription" 
+                        placeholder="Điều gì đặc biệt trong khoảnh khắc này? Cảm xúc, suy nghĩ, hay kỷ niệm mà bạn muốn lưu giữ mãi mãi..."
+                        rows="4"
+                    ></textarea>
+                    <div class="char-counter">
+                        <span id="charCount">0</span>/1000 ký tự
+                    </div>
+                </div>
+
+                <!-- Enhanced Upload Button -->
+                <button class="upload-btn" id="uploadBtn">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span class="btn-text">Lưu lại khoảnh khắc ✨</span>
+                    <i class="fas fa-sparkles btn-sparkle"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- NEW: Enhanced Filter Bar -->
+        <div class="filter-bar" id="filterBar">
+            <div class="filter-group">
+                <span class="filter-label">
+                    <i class="fas fa-filter"></i>
+                    Lọc theo:
+                </span>
+                <select class="filter-select" id="filterMonth">
+                    <option value="">Tất cả tháng</option>
+                    <option value="1">Tháng 1</option>
+                    <option value="2">Tháng 2</option>
+                    <option value="3">Tháng 3</option>
+                    <option value="4">Tháng 4</option>
+                    <option value="5">Tháng 5</option>
+                    <option value="6">Tháng 6</option>
+                    <option value="7">Tháng 7</option>
+                    <option value="8">Tháng 8</option>
+                    <option value="9">Tháng 9</option>
+                    <option value="10">Tháng 10</option>
+                    <option value="11">Tháng 11</option>
+                    <option value="12">Tháng 12</option>
+                </select>
+                <select class="filter-select" id="filterYear">
+                    <option value="">Tất cả năm</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                </select>
+                <select class="filter-select" id="filterType">
+                    <option value="">Tất cả loại</option>
+                    <option value="moment">Khoảnh khắc</option>
+                    <option value="idea">Ý tưởng</option>
+                    <option value="feeling">Cảm xúc</option>
+                </select>
+            </div>
+            <button class="filter-btn" id="applyFilter">
+                <i class="fas fa-search"></i>
+                Áp dụng
+            </button>
+            <button class="filter-btn reset" id="resetFilter">
+                <i class="fas fa-redo"></i>
+                Đặt lại
+            </button>
+        </div>
+
+        <!-- Enhanced Gallery Section -->
+        <div class="gallery-section">
+            <div class="gallery-header">
+                <h3><i class="fas fa-images"></i> Gallery Sáng Tạo Của Bạn</h3>
+                <div class="gallery-stats">
+                    <span id="postCount">0 bài đăng</span>
+                    <span class="stat-separator">•</span>
+                    <span id="filteredCount">0 đang hiển thị</span>
+                </div>
+            </div>
+
+            <!-- Enhanced Random Memory -->
+            <div class="random-memory" id="randomMemory" style="display: none;">
+                <div class="memory-card">
+                    <div class="memory-header">
+                        <i class="fas fa-history"></i>
+                        <span>Ký ức đáng nhớ ✨</span>
+                    </div>
+                    <div id="memoryContent">
+                        <!-- Memory content will be loaded here -->
+                    </div>
+                    <button class="new-version-btn" id="newVersionBtn">
+                        <i class="fas fa-magic"></i>
+                        Tạo phiên bản mới từ ký ức này?
+                    </button>
+                </div>
+            </div>
+
+            <!-- Enhanced Gallery Grid -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Posts will be loaded here -->
+            </div>
+
+            <!-- Enhanced Empty State -->
+            <div class="empty-gallery" id="emptyGallery" style="display: none;">
+                <i class="fas fa-images"></i>
+                <p>Bộ sưu tập của bạn còn trống</p>
+                <p class="empty-subtitle">Hãy lưu lại khoảnh khắc đầu tiên để bắt đầu hành trình sáng tạo! 🌟</p>
+            </div>
+
+            <!-- NEW: Load More Button -->
+            <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    <i class="fas fa-sync-alt"></i>
+                    Xem thêm khoảnh khắc
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content edit-modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Chỉnh sửa bài đăng</h3>
+                <button class="close-btn" id="closeEditModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="edit-media-section">
+                    <h4><i class="fas fa-photo-video"></i> Media hiện tại</h4>
+                    <div class="edit-preview" id="editPreview">
+                        <!-- Edit preview will be loaded here -->
+                    </div>
+                    
+                    <div class="edit-media-actions">
+                        <label class="add-media-btn">
+                            <i class="fas fa-plus-circle"></i>
+                            Thêm ảnh/video mới
+                            <input type="file" id="editMediaInput" accept="image/*,video/*" multiple style="display: none;">
+                        </label>
+                        <p class="edit-media-hint">Bạn có thể thêm tối đa 10 ảnh/video. File mới sẽ được thêm vào media hiện tại.</p>
+                    </div>
+                </div>
+
+                <div class="edit-description-section">
+                    <h4><i class="fas fa-comment-alt"></i> Chỉnh sửa mô tả</h4>
+                    <textarea 
+                        id="editDescription" 
+                        placeholder="Chia sẻ câu chuyện đằng sau sáng tạo của bạn..."
+                        rows="4"
+                    ></textarea>
+                    <div class="char-counter">
+                        <span id="editCharCount">0</span>/1000 ký tự
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="cancel-btn" id="cancelEdit">
+                    <i class="fas fa-times"></i>
+                    Hủy bỏ
+                </button>
+                <button class="save-btn" id="saveEdit">
+                    <i class="fas fa-save"></i>
+                    Lưu thay đổi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Delete Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content delete-modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-trash"></i> Xác nhận xóa</h3>
+                <button class="close-btn" id="closeDeleteModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="delete-warning">
+                    <div class="warning-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="warning-content">
+                        <p class="warning-title">Bạn có chắc muốn xóa bài đăng này không?</p>
+                        <p class="warning-subtitle">Hành động này không thể hoàn tác. Tất cả ảnh/video và nội dung sẽ bị xóa vĩnh viễn.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="cancel-btn" id="cancelDelete">
+                    <i class="fas fa-arrow-left"></i>
+                    Hủy bỏ
+                </button>
+                <button class="delete-confirm-btn" id="confirmDelete">
+                    <i class="fas fa-trash"></i>
+                    Xóa bài đăng
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Media Viewer -->
+    <div class="modal" id="mediaViewer">
+        <div class="media-viewer-content">
+            <div class="viewer-header">
+                <div class="viewer-title">
+                    <i class="fas fa-expand"></i>
+                    Chi tiết bài đăng
+                </div>
+                <button class="close-viewer-btn" id="closeMediaViewer">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="viewer-main-content">
+                <div class="viewer-media-section">
+                    <div class="viewer-controls">
+                        <button class="viewer-nav-btn prev-btn" id="prevMedia">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="viewer-nav-btn next-btn" id="nextMedia">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="viewer-main-media" id="viewerMainMedia">
+                        <!-- Main media will be loaded here -->
+                    </div>
+                    
+                    <div class="viewer-thumbnails" id="viewerThumbnails">
+                        <!-- Thumbnails will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="viewer-info-section">
+                    <div class="viewer-description" id="viewerDescription">
+                        <!-- Description will be loaded here -->
+                    </div>
+                    <div class="viewer-meta">
+                        <div class="viewer-counter" id="viewerCounter">1/1</div>
+                        <div class="viewer-type" id="viewerType">Khoảnh khắc</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Alert Modal -->
+    <div class="modal" id="alertModal">
+        <div class="modal-content alert-modal-content">
+            <div class="modal-header">
+                <h3 id="alertTitle">Thông báo</h3>
+                <button class="close-btn" id="closeAlertModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="alert-icon" id="alertIcon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <p id="alertMessage">Nội dung thông báo</p>
+            </div>
+            <div class="modal-actions">
+                <button class="confirm-btn" id="confirmAlert">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Loading Modal -->
+    <div class="modal" id="loadingModal" style="display: none;">
+        <div class="modal-content" style="background: transparent; box-shadow: none;">
+            <div class="loading-spinner">
+                <div class="spinner-ring"></div>
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Đang xử lý...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- ========================================================-->
+<!-- ========================================================-->
+<section id="study" class="section">
+  <div class="study-container">
+    <h1 class="study-title">📚 STUDY TRACKER - HỌC TẬP THÔNG MINH</h1>
+
+    <!-- STICKY NOTES - GHI CHÚ QUAN TRỌNG - ĐÃ CẢI TIẾN -->
+    <div class="sticky-notes-section">
+      <div class="sticky-notes-header">
+        <i class="fas fa-sticky-note"></i>
+        <h2>GHI CHÚ QUAN TRỌNG</h2>
+        <span class="notes-counter" id="notesCounter">0/8</span>
+      </div>
+      
+      <div class="sticky-notes-container" id="stickyNotesContainer">
+        <!-- Sticky notes sẽ được render ở đây -->
+      </div>
+      
+      <div class="add-note-form">
+        <div class="note-input-wrapper">
+          <input 
+            type="text" 
+            id="newNoteTitle" 
+            placeholder="📝 Tiêu đề ghi chú..."
+            maxlength="100"
+          />
+          <textarea 
+            id="newNoteContent" 
+            placeholder="✍️ Nội dung chi tiết..."
+            maxlength="500"
+            rows="3"
+          ></textarea>
+          <div class="note-tags-wrapper">
+            <input 
+              type="text" 
+              id="newNoteTags" 
+              placeholder="🏷️ Thẻ tag (ngăn cách bằng dấu phẩy). VD: quan trọng, deadline, ôn tập..."
+              maxlength="100"
+            />
+          </div>
+        </div>
+        <button id="saveNoteBtn" class="action-btn primary-btn">
+          <i class="fas fa-plus-circle"></i> THÊM GHI CHÚ
+        </button>
+      </div>
+    </div>
+
+    <div class="study-dashboard">
+      <!-- CỘT CHÍNH -->
+      <div class="study-column study-column-main">
+        
+        <!-- TỔNG QUAN HÔM NAY VÀ LỊCH SỬ - ĐÃ SỬA MÀU SẮC -->
+        <div class="card overview-card">
+          <div class="overview-header">
+            <h2 class="card-title"><i class="fas fa-chart-pie"></i> TỔNG QUAN HỌC TẬP</h2>
+            <div class="overview-tabs">
+              <button id="todayTabBtn" class="overview-tab active">
+                <i class="fas fa-sun"></i> HÔM NAY
+              </button>
+              <button id="historyTabBtn" class="overview-tab">
+                <i class="fas fa-history"></i> LỊCH SỬ
+              </button>
+            </div>
+          </div>
+          
+          <div class="overview-content">
+            <!-- Tab Hôm nay -->
+            <div id="todayOverviewContent" class="overview-tab-content active">
+              <!-- Nội dung hôm nay sẽ được render bằng JavaScript -->
+            </div>
+            
+            <!-- Tab Lịch sử -->
+            <div id="historyOverviewContent" class="overview-tab-content">
+              <!-- Nội dung lịch sử sẽ được render bằng JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- POMODORO TIMER - ĐÃ SỬA VÒNG TRÒN FILL -->
+        <div class="card pomodoro-timer">
+          <h2 class="card-title"><i class="fas fa-hourglass-half"></i> POMODORO TIMER</h2>
+          
+          <div class="timer-main">
+            <div class="timer-progress">
+                <svg class="progress-ring" viewBox="0 0 200 200">
+                    <circle class="progress-ring-background" cx="100" cy="100" r="90" stroke-width="8"></circle>
+                    <circle class="progress-ring-circle" cx="100" cy="100" r="90" stroke-width="8" stroke-linecap="round"></circle>
+                </svg>
+                <div class="timer-display">
+                    <div id="timerDisplay" class="time-main">25:00</div>
+                    <div id="sessionType" class="session-type">
+                        <i class="fas fa-play-circle"></i> Sẵn sàng học tập
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="timer-controls">
+            <select id="pomodoroSubjectSelect" class="styled-select" title="Chọn môn học">
+              <option value="">-- Chọn môn học --</option>
+            </select>
+            <div class="time-selectors">
+              <select id="studyTimeSelect" class="styled-select" title="Chọn thời gian học">
+                <option value="25">25 phút học</option>
+                <option value="50">50 phút học</option>
+                <option value="60">1 giờ học</option>
+                <option value="90">1.5 giờ học</option>
+                <option value="120">2 giờ học</option>
+              </select>
+              <select id="breakTimeSelect" class="styled-select" title="Chọn thời gian nghỉ">
+                <option value="5">5 phút nghỉ</option>
+                <option value="10">10 phút nghỉ</option>
+                <option value="15">15 phút nghỉ</option>
+                <option value="20">20 phút nghỉ</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="timer-actions">
+            <button id="startTimerBtn" class="action-btn primary-btn large-btn">
+              <i class="fas fa-play-circle"></i> BẮT ĐẦU PHIÊN MỚI
+            </button>
+            <div class="timer-control-buttons">
+              <button id="toggleTimerBtn" class="action-btn secondary-btn" disabled>
+                <i class="fas fa-pause"></i> TẠM DỪNG
+              </button>
+              <button id="resetTimerBtn" class="action-btn accent-btn" disabled>
+                <i class="fas fa-stop"></i> KẾT THÚC & LƯU
+              </button>
+            </div>
+          </div>
+
+          <div class="auto-settings">
+            <h3 class="settings-title"><i class="fas fa-cog"></i> TÙY CHỌN TỰ ĐỘNG</h3>
+            <label class="toggle-label">
+              <input type="checkbox" id="autoBreakToggle" checked>
+              <span class="toggle-slider"></span>
+              <span class="toggle-text">Tự động bắt đầu nghỉ sau khi học xong</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- QUẢN LÝ MÔN HỌC -->
+        <div class="card subject-manager">
+          <h2 class="card-title"><i class="fas fa-books"></i> MÔN HỌC CỦA TÔI</h2>
+          <ul id="subjectList" class="subject-list">
+            <!-- Danh sách môn học sẽ được render ở đây -->
+          </ul>
+          <div class="add-subject-form">
+            <input type="text" id="newSubjectInput" placeholder="Thêm môn học mới...">
+            <button id="addSubjectBtn" class="action-btn primary-btn">
+              <i class="fas fa-plus"></i> THÊM MÔN
+            </button>
+          </div>
+        </div>
+
+        <!-- BIỂU ĐỒ THỐNG KÊ - ĐÃ SỬA BAR CHART -->
+        <div class="card study-charts">
+          <h2 class="card-title"><i class="fas fa-chart-bar"></i> THỐNG KÊ HỌC TẬP</h2>
+          
+          <div class="charts-tabs">
+            <button class="chart-tab active" data-chart="daily">
+              <i class="fas fa-calendar-week"></i> 7 NGÀY GẦN ĐÂY
+            </button>
+            <button class="chart-tab" data-chart="monthly">
+              <i class="fas fa-calendar-alt"></i> 6 THÁNG GẦN ĐÂY
+            </button>
+            <button class="chart-tab" data-chart="yearly">
+              <i class="fas fa-calendar"></i> CẢ NĂM
+            </button>
+          </div>
+          
+          <div class="charts-content">
+            <div id="dailyChart" class="chart-container active">
+              <!-- Biểu đồ 7 ngày sẽ được render ở đây -->
+            </div>
+            <div id="monthlyChart" class="chart-container">
+              <!-- Biểu đồ 6 tháng sẽ được render ở đây -->
+            </div>
+            <div id="yearlyChart" class="chart-container">
+              <!-- Biểu đồ cả năm sẽ được render ở đây -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CỘT PHỤ -->
+      <div class="study-column study-column-side">
+        
+        <!-- TÀI LIỆU HỌC TẬP -->
+        <div class="card study-resources">
+          <h2 class="card-title"><i class="fas fa-link"></i> TÀI LIỆU HỌC TẬP</h2>
+          
+          <div class="resource-tabs">
+            <button class="resource-tab active" data-tab="general">
+              <i class="fas fa-globe"></i> TÀI LIỆU CHUNG
+            </button>
+            <button class="resource-tab" data-tab="subject">
+              <i class="fas fa-book"></i> THEO MÔN HỌC
+            </button>
+          </div>
+
+          <div class="resource-search">
+            <input type="text" id="resourceSearchInput" placeholder="🔍 Tìm kiếm tài liệu...">
+          </div>
+
+          <div class="resource-tab-content active" id="generalResources">
+            <ul id="generalResourceList" class="resource-list">
+              <!-- Tài liệu chung sẽ được render ở đây -->
+            </ul>
+            <div class="add-resource-form">
+              <h4><i class="fas fa-plus-circle"></i> Thêm tài liệu chung</h4>
+              <input type="text" id="newGeneralResourceName" placeholder="Tên tài liệu...">
+              <input type="url" id="newGeneralResourceLink" placeholder="https://...">
+              <button id="addGeneralResourceBtn" class="action-btn primary-btn" onclick="addResource()">
+                <i class="fas fa-plus"></i> THÊM TÀI LIỆU
+              </button>
+            </div>
+          </div>
+
+          <div class="resource-tab-content" id="subjectResources">
+            <div id="subjectResourceList" class="subject-resources-container">
+              <!-- Tài liệu theo môn học sẽ được render ở đây -->
+            </div>
+            <div class="add-resource-form">
+              <h4><i class="fas fa-plus-circle"></i> Thêm tài liệu theo môn</h4>
+              <select id="subjectResourceSelect" class="styled-select">
+                <option value="">-- Chọn môn học --</option>
+              </select>
+              <input type="text" id="newSubjectResourceName" placeholder="Tên tài liệu...">
+              <input type="url" id="newSubjectResourceLink" placeholder="https://...">
+              <button id="addSubjectResourceBtn" class="action-btn secondary-btn" onclick="addResource()">
+                <i class="fas fa-plus"></i> THÊM VÀO MÔN HỌC
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER - MỚI THÊM -->
+    <div id="studyToastContainer" class="study-toast-container"></div>
+  </div>
+</section>
+
+<!-- MODAL ĐÁNH GIÁ PHIÊN HỌC -->
+<div id="ratingModal" class="modal">
+  <div class="modal-content rating-modal">
+    <div class="modal-header">
+      <h3><i class="fas fa-star"></i> Đánh giá phiên học</h3>
+      <button class="close-btn">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="rating-section">
+        <label>Đánh giá:</label>
+        <div id="ratingStars" class="rating-stars">
+          <!-- Stars sẽ được render bằng JavaScript -->
+        </div>
+      </div>
+      <div class="notes-section">
+        <label for="ratingNotes">Ghi chú:</label>
+        <textarea id="ratingNotes" placeholder="Ghi chú về phiên học này..."></textarea>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button id="cancelRating" class="action-btn cancel-btn">HỦY</button>
+      <button id="saveRating" class="action-btn primary-btn">LƯU ĐÁNH GIÁ</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CHỈNH SỬA GHI CHÚ - ĐÃ CẢI TIẾN -->
+<div id="editNoteModal" class="modal">
+  <div class="modal-content edit-note-modal">
+    <div class="modal-header">
+      <h3><i class="fas fa-edit"></i> Chỉnh sửa ghi chú</h3>
+      <button class="close-btn">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="editNoteTitle">Tiêu đề:</label>
+        <input type="text" id="editNoteTitle" placeholder="Tiêu đề ghi chú..." maxlength="100">
+      </div>
+      <div class="form-group">
+        <label for="editNoteContent">Nội dung:</label>
+        <textarea id="editNoteContent" placeholder="Nội dung chi tiết..." rows="6" maxlength="500"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="editNoteTags">Thẻ tag:</label>
+        <input type="text" id="editNoteTags" placeholder="Thẻ tag (ngăn cách bằng dấu phẩy)" maxlength="100">
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button id="cancelNoteEdit" class="action-btn cancel-btn">HỦY</button>
+      <button id="saveNoteEdit" class="action-btn primary-btn">LƯU THAY ĐỔI</button>
+    </div>
+  </div>
+</div>
+
+<!-- CUSTOM ALERT & CONFIRM CONTAINERS -->
+<div id="customAlertContainer"></div>
+<div id="customConfirmContainer"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- ========================================================-->
+
+
+
+
+ <!-- ========================================================-->
+
+
+<!-- Bucket List Section - ENHANCED VERSION -->
+<section id="bucketlist" class="section">
+    <div class="bucketlist-container">
+        <div class="bucketlist-header">
+            <h1>🎯 BUCKET LIST</h1>
+            <p class="bucketlist-subtitle">Biến ước mơ thành hành động</p>
+        </div>
+
+        <div class="progress-overview">
+            <div class="progress-card">
+                <div class="progress-icon">🔥</div>
+                <div class="progress-info">
+                    <h3>Đang thực hiện</h3>
+                    <span class="progress-count" id="active-count">0</span>
+                </div>
+            </div>
+            <div class="progress-card">
+                <div class="progress-icon">💭</div>
+                <div class="progress-info">
+                    <h3>Ước mơ tương lai</h3>
+                    <span class="progress-count" id="future-count">0</span>
+                </div>
+            </div>
+            <div class="progress-card">
+                <div class="progress-icon">🎉</div>
+                <div class="progress-info">
+                    <h3>Đã hoàn thành</h3>
+                    <span class="progress-count" id="completed-count">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bucketlist-main">
+            <div class="dream-lists">
+                <div class="dream-section">
+                    <div class="section-header">
+                        <h2>🔥 ĐANG THỰC HIỆN</h2>
+                        <span class="section-subtitle">Tối đa 5 ước mơ để tập trung</span>
+                    </div>
+                    <div class="dreams-container" id="active-dreams" data-status="active">
+                        <div class="empty-state">
+                            <i class="fas fa-star"></i>
+                            <p>Chưa có ước mơ nào</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dream-section">
+                    <div class="section-header">
+                        <h2>💭 ƯỚC MƠ TƯƠNG LAI</h2>
+                        <span class="section-subtitle">Lưu trữ và ấp ủ</span>
+                    </div>
+                    <div class="dreams-container" id="future-dreams" data-status="future">
+                        <div class="empty-state">
+                            <i class="fas fa-cloud"></i>
+                            <p>Chưa có ước mơ nào</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dream-section">
+                    <div class="section-header">
+                        <h2>🏆 ƯỚC MƠ ĐÃ HOÀN THÀNH</h2>
+                        <span class="section-subtitle">Những kỷ niệm đáng nhớ</span>
+                    </div>
+                    <div class="completed-dreams-container" id="completed-dreams-section">
+                        <div class="empty-state">
+                            <i class="fas fa-trophy"></i>
+                            <p>Chưa có ước mơ nào được hoàn thành</p>
+                            <small>Hãy bắt đầu và hoàn thành ước mơ đầu tiên của bạn!</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bucketlist-sidebar">
+                <button class="add-dream-btn" id="add-dream-btn">
+                    <i class="fas fa-plus"></i>
+                    Thêm Ước Mơ Mới
+                </button>
+
+                <div class="motivation-panel">
+                    <h3>💫 ĐỘNG LỰC HÔM NAY</h3>
+                    <div class="motivation-item" id="daily-motivation">
+                    </div>
+                </div>
+
+                <div class="stats-panel">
+                    <h3>📊 THỐNG KÊ NHANH</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Ước mơ nhỏ</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Ước mơ vừa</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Ước mơ lớn</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Dream Modal -->
+    <div class="modal" id="add-dream-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thêm Ước Mơ Mới</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="dream-form">
+                    <div class="form-group">
+                        <label for="dream-title">Tên ước mơ *</label>
+                        <input type="text" id="dream-title" placeholder="Ví dụ: Học chơi guitar, Đi du lịch Nhật Bản..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dream-category">Phân loại ước mơ *</label>
+                        <div class="category-options">
+                            <div class="category-option" data-category="small">
+                                <div class="category-icon">✨</div>
+                                <div class="category-info">
+                                    <h4>Ước mơ nhỏ</h4>
+                                    <p>1-4 tuần</p>
+                                </div>
+                            </div>
+                            <div class="category-option" data-category="medium">
+                                <div class="category-icon">🎪</div>
+                                <div class="category-info">
+                                    <h4>Ước mơ vừa</h4>
+                                    <p>1-6 tháng</p>
+                                </div>
+                            </div>
+                            <div class="category-option" data-category="large">
+                                <div class="category-icon">🏔️</div>
+                                <div class="category-info">
+                                    <h4>Ước mơ lớn</h4>
+                                    <p>6 tháng+</p>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="dream-category" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dream-description">Mô tả (tùy chọn)</label>
+                        <textarea id="dream-description" placeholder="Tại sao bạn muốn thực hiện ước mơ này?..." rows="3"></textarea>
+                    </div>
+
+                    <!-- Progress Section for Small/Medium Dreams -->
+                    <div class="form-group" id="progress-section" style="display: none;">
+                        <label>Tiến độ hiện tại</label>
+                        <div class="progress-slider-container">
+                            <input type="range" id="dream-progress-slider" class="progress-slider" min="0" max="100" value="0" oninput="document.getElementById('dream-progress-value').textContent = this.value">
+                            <span class="progress-value"><span id="dream-progress-value">0</span>%</span>
+                        </div>
+                    </div>
+
+                    <!-- Steps Section for Large Dreams -->
+                    <div class="form-group" id="steps-section" style="display: none;">
+                        <label>Bước chân nhỏ (cho ước mơ lớn)</label>
+                        <div class="steps-container" id="steps-container">
+                        </div>
+                        <button type="button" class="add-step-btn" id="add-step-btn">
+                            <i class="fas fa-plus"></i> Thêm bước
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Trạng thái ban đầu</label>
+                        <div class="status-options">
+                            <label class="status-option">
+                                <input type="radio" name="status" value="active" checked>
+                                <span class="radio-custom"></span>
+                                🔥 Bắt đầu thực hiện ngay
+                            </label>
+                            <label class="status-option">
+                                <input type="radio" name="status" value="future">
+                                <span class="radio-custom"></span>
+                                💭 Lưu vào ước mơ tương lai
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-actions">
+                <button class="cancel-btn">Hủy</button>
+                <button class="save-btn" id="save-dream-btn">Lưu Ước Mơ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dream Detail Modal -->
+    <div class="modal" id="dream-detail-modal">
+        <div class="modal-content dream-detail-modal">
+            <div class="modal-header">
+                <h3 id="detail-dream-title"></h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="dream-meta">
+                    <span class="dream-category-badge" id="detail-category"></span>
+                    <span class="dream-date" id="detail-date"></span>
+                </div>
+                
+                <div class="dream-description" id="detail-description"></div>
+
+                <div class="steps-section" id="detail-steps-section">
+                    <h4>📋 Tiến độ & Các bước</h4>
+                    <div class="steps-list" id="detail-steps-list">
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <h4>📊 Tổng tiến độ</h4>
+                    <div class="progress-bar-large">
+                        <div class="progress-fill" id="detail-progress-fill"></div>
+                    </div>
+                    <span class="progress-text" id="detail-progress-text"></span>
+                </div>
+            </div>
+            
+            <div class="modal-actions" id="detail-actions">
+            </div>
+        </div>
+    </div>
+
+    <!-- Complete Dream Modal -->
+    <div class="modal" id="complete-dream-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🎉 Chúc mừng bạn!</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn đã hoàn thành: <strong id="complete-dream-title"></strong></p>
+                
+                <div class="form-group">
+                    <label for="completion-thoughts">Cảm nhận của bạn *</label>
+                    <textarea id="completion-thoughts" placeholder="Chia sẻ cảm xúc, bài học, hoặc kỷ niệm đáng nhớ khi hoàn thành ước mơ này..." rows="4" required></textarea>
+                    <small>Hãy viết ra những cảm nhận chân thật nhất của bạn</small>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="cancel-btn">Để sau</button>
+                <button class="save-btn" id="save-completion-btn">Lưu Kỷ Niệm</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- Bucket list items will be added here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/goals.js"></script>
+    <script src="js/planner.js"></script>
+    <script src="js/mood.js"></script>
+    <script src="js/creative.js"></script>
+    <script src="js/study.js"></script>
+    <script src="js/bucketlist.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/sidebar.js"></script>
+</nav>
+</body>
+</html>
